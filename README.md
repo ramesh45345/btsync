@@ -25,7 +25,7 @@ This script was created to be generic, and run on any distro that supports syste
 <li>Ensure that you install, upgrade, or remove BTSync with the same user who performed any other operations with this script. Don't run the script as a user, and use the remove function as root. It will not work.</li>
 </ul>
 
-<h4><b>Technical Detail of the Script?</b></h4>
+<h4><b>Technical Detail of the Script:</b></h4>
 
 <ul>
 <li><b>Install Mode</b>: Checks to see if BTSync exists already. If it does not, it will get the BTsync tarball from the web, install it in /usr/local/bin, create a systemd service and run it, and create a configuration in ~/.sync/sync.conf in your home folder. It will also create a shortcut and icon in your application menu (shortcut and icon is taken from tuxpoldo's work on Github, see here: <a>https://github.com/tuxpoldo/btsync-deb</a>).</li>
@@ -36,7 +36,7 @@ This script was created to be generic, and run on any distro that supports syste
 <h4><b>Limitations:</b></h4>
 
 <ul>
-<li>Currently the script only works with a comptuer that has systemd. I tested the script on Fedora, OpenSUSE, and Debian (specifically the Siduction distribution, which had systemd running on it). It wouldn't be a tremendous effort to get it to run on sysvinit, but I'd need some help with the script in order to implement that. I can also have it run on other init systems (like Upstart), if I get some hints about how to make a service.</li>
+<li>Currently the script only works with a computer that has systemd. I tested the script on Fedora, OpenSUSE, and Debian (specifically the Siduction distribution, which had systemd running on it). It wouldn't be a tremendous effort to get it to run on sysvinit, but I'd need some help with the script in order to implement that. I can also have it run on other init systems (like Upstart), if I get some hints about how to make a service.</li>
 <li>The script runs as a normal user. This is to make the permissions of using and accessing locations through BTSync the same as the user's permissions. This can lead to odd behavior on mounted drives, which may need root permissions to access the contents. Make sure mounted drives are owned by your user, or at least give permissions for your user to read and write.</li>
-<li>Right now the URL's this script uses are hardcoded to a specific version of BTSync. Can anyone provide links to the linux versions which always point to the latest version of BTSync? Either that or some hints about how to detect the version number and insert it into the url would be helpful. Otherwise, youll have to manually replace the URL when a new version comes out.</li>
+<li>Right now the URL's this script uses are hardcoded to a specific version of BTSync. Can anyone provide links to the linux versions which always point to the latest version of BTSync? Either that or some hints about how to detect the version number and insert it into the url would be helpful. Otherwise, you'll have to manually replace the URL when a new version comes out.</li>
 
