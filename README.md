@@ -16,6 +16,7 @@ This script was created to be generic, and run on any distro that supports syste
 <h4><b>How to use the script:</b></h4>
 
 <ul>
+<li>Ensure you are running a Linux Distro which is using systemd!</li>
 <li>Execute the script using <code>sh ./BTSync_Installer.sh</code> as a normal user.</li>
 <li>Ensure that no other instances of btsync are present on the system. There could be conflicts.</li>
 <li>Use the script as a normal user. Do not run the script as root unless you have a very specific reason to do so.</li>
