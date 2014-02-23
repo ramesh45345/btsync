@@ -1,7 +1,8 @@
 #!/bin/bash
-# BTSync Installer Script for Linux, v1.0
+# BTSync Installer Script for Linux, v1.01
 # Copyright 2014 vinadoros; Distributed under the LGPL v2.1
 # All external code/work is copyrighted, and subject to the respective author's licenses.
+# See thread at: http://forum.bittorrent.com/topic/26521-btsync-installer-script-for-linux/
 
 
 # Exit if there is any error in the program.
@@ -15,8 +16,22 @@ set -e
 # Set home folder for current user.
 HOMEFOLDER=~
 # URL's from http://forum.bittorrent.com/topic/24781-latest-1282-build/
-BTSYNC_64BITURL=http://syncapp.bittorrent.com/1.2.82/btsync_x64-1.2.82.tar.gz
-BTSYNC_32BITURL=http://syncapp.bittorrent.com/1.2.82/btsync_i386-1.2.82.tar.gz
+btsyncdownurl=http://www.bittorrent.com/sync/downloads
+
+# Test the btsyncdownurl to see if it works.
+test2_url=`curl --silent -Is $btsyncdownurl | head -n 1 | sed -r 's/.* ([0-9]*) .*/\1/'`
+if [ "$test2_url" != "200" ]; then
+    echo version $1 not found.
+    exit 1
+fi
+
+# Get the BTSync download page, and then read the version number.
+wget -P ~/ $btsyncdownurl
+version=$(perl -ne 'print $1 if s/.*Linux i386.glibc 2.3.<.a>.*<span>([\.\d]+)<.span>.*/\1/;' ~/downloads)
+rm ~/downloads
+
+BTSYNC_64BITURL=http://syncapp.bittorrent.com/$version/btsync_x64-$version.tar.gz
+BTSYNC_32BITURL=http://syncapp.bittorrent.com/$version/btsync_i386-$version.tar.gz
 
 # Set the version of BTSYNC to use, based on 32bit or 64bit machine. Currently only works for x86 and x86_64 architectures.
 MACHINEARCH=$(uname -m)
@@ -346,3 +361,7 @@ done
 
 
 
+# Changelog
+#
+# 1.01 - Updated to add version detection of the BTSync url, as suggested by JimH44 on the BTSync forums.
+# 1.0 - Initial Release
